@@ -212,7 +212,8 @@ class TetherClass extends Evented {
       offset: '0 0',
       targetOffset: '0 0',
       targetAttachment: 'auto auto',
-      classPrefix: 'tether'
+      classPrefix: 'tether',
+      roundValues: false
     };
 
     this.options = extend(defaults, options);
@@ -697,7 +698,7 @@ class TetherClass extends Evented {
           xPos = -_pos.right;
         }
 
-        if (window.matchMedia) {
+        if (this.options.roundValues || window.matchMedia) {
           // HubSpot/tether#207
           const retina = window.matchMedia('only screen and (min-resolution: 1.3dppx)').matches ||
                          window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3)').matches;
