@@ -670,7 +670,7 @@ var TetherClass = (function (_Evented) {
         targetOffset: '0 0',
         targetAttachment: 'auto auto',
         classPrefix: 'tether',
-        roundValues: false
+        forceRoundedValues: false
       };
 
       this.options = extend(defaults, options);
@@ -1187,7 +1187,10 @@ var TetherClass = (function (_Evented) {
             xPos = -_pos.right;
           }
 
-          if (_this8.options.roundValues || window.matchMedia) {
+          if (_this8.options.forceRoundedValues) {
+            xPos = Math.round(xPos);
+            yPos = Math.round(yPos);
+          } else if (window.matchMedia) {
             // HubSpot/tether#207
             var retina = window.matchMedia('only screen and (min-resolution: 1.3dppx)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3)').matches;
             if (!retina) {
